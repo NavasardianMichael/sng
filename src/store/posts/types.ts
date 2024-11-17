@@ -1,37 +1,66 @@
 import { Normalized } from 'types/commons'
 
-
-const a = {
-  mainImageBase64: 'string',
-  description: 'string',
-  priceUnit: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-  price: 0,
-  brandId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-  modelId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-  year: 0,
-  vin: 'string',
-  modificationId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-  colorId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-  mileage: 0,
-  purchaseDate: '2024-11-14',
-  damaged: true,
-  runAndGo: true,
-  underWarranty: true,
-  clearance: true,
-  name: 'string',
-  email: 'string',
-  phoneNumber: 'string',
-  lookupAddress: 'string',
-  
-  document: 0,
-  ownerNumber: 0,
-  availability: 0,
-  category: 0,
-  bodyType: 0,
-  engine: 0,
-  drive: 0,
-  transmission: 0,
+export type PostsSlice = {
+  list: Normalized<Post>
+  currentPostId: Post['id']
+  favoritePostIds: Post['id'][]
 }
+
+export type Post = {
+  id: string,
+  authorShortInfo: string,
+  createdDateUtc: string,
+  modifiedDateUtc: string,
+  availability: string,
+  status: string,
+  description: string,
+  options: string[],
+  images: {
+    primary: string
+    secondaries: string[]
+  }
+  carDetails: {
+    price: {
+      unitId: string
+      car: number,
+      secondary: number,
+    },
+    brand: string,
+    model: string,
+    year: number,
+    vin: string,
+    modification: string,
+    color: string,
+    mileage: number,
+    purchaseDate: string,
+    damaged: boolean,
+    runAndGo: boolean,
+    underWarranty: boolean,
+    clearance: boolean,
+    ownerNumber: number,
+    category: string,
+    engine: string,
+    transmission: string,
+    bodyType: string,
+    drive: string,
+    documentType: string,
+  },
+  contactInfo: {
+    contactName: string,
+    contactEmail: string,
+    contactPhoneNumber: string,
+    lookupAddress: string,
+  },
+}
+
+export type PostsActionPayloads = {
+  initPosts: PostsSlice['list']
+  addPost: Post
+  editPost: Post
+  deletePost: Pick<Post, 'id'>
+}
+
+
 
 // const b = {
 //   value: [
@@ -126,61 +155,3 @@ const a = {
 //   isFailure: false,
 //   error: { code: '', description: null },
 // }
-
-export type PostsSlice = {
-  list: Normalized<Post>
-  favoritePostIds: Post['id'][]
-}
-
-export type Post = {
-  id: string,
-  authorShortInfo: string,
-  createdDateUtc: string,
-  modifiedDateUtc: string,
-  // ?? isAvailable?
-  availabilityId: string,
-  status: string,
-  description: string,
-  images: {
-    primary: string
-    secondaries: string[] 
-  }
-  carDetails: {
-    price: {
-      unitId: string
-      car: number,
-      secondary: number,
-    },
-    brandId: string,
-    modelId: string,
-    year: number,
-    vin: string,
-    modificationId: string,
-    colorId: string,
-    mileage: number,
-    purchaseDate: string,
-    damaged: boolean,
-    runAndGo: boolean,
-    underWarranty: boolean,
-    clearance: boolean,
-    ownerNumber: number,
-    category: string,
-    engine: string,
-    transmission: string,
-    bodyType: string,
-    drive: string,
-    documentType: string,
-  },
-  contactInfo: {
-    contactName: string,
-    contactEmail: string,
-    contactPhoneNumber: string,
-    lookupAddress: string,
-  },
-  // ????
-  options: string[],
-},
-
-export type PostsActionPayloads = {
-  initPosts: PostsSlice['list']
-}

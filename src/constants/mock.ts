@@ -1,4 +1,4 @@
-import { GetMaxiomsAPI } from 'api/maxioms/types'
+import { GetMaxiomsAPI } from 'api/posts/types'
 import { Cmap } from 'store/maxiom/types'
 import { Universal } from 'store/posts/types'
 

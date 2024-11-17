@@ -1,0 +1,48 @@
+.main {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  border-radius: 25px;
+  color: var(--primary-color);
+}
+
+.border {
+  border: 7px solid var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 40px;
+  padding-top: 30px;
+  position: relative;
+  border-radius: 20px;
+}
+
+.heading {
+  font-family: 'Oswald', sans-serif;
+  text-align: center;
+  font-size: 40px;
+}
+
+.subHeading {
+  text-align: center;
+  font-family: 'Satisfy', cursive;
+  font-size: 22px;
+  position: absolute;
+  bottom: -18px;
+  background-color: var(--secondary-color);
+  padding: 0 20px 0 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .heading {
+    font-size: 20px;
+  }
+  .subHeading {
+    font-size: 15px;
+    bottom: -12px;
+  }
+}

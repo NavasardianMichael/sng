@@ -13,7 +13,7 @@ export type Endpoint<T extends EndpointPaths> = {
 }
 
 export type APIResponse<T> = {
-  result: T
-  messages: string[]
-  statusCode: number
+  isSuccess: boolean,
+  value: T
+  error: { code: number, description: string },
 }

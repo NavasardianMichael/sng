@@ -1,4 +1,4 @@
-import { GetMaxiomsAPI } from 'api/maxioms/types'
+import { GetMaxiomsAPI } from 'api/posts/types'
 import { setAppOptions } from 'store/app/slice'
 import { getMaxiomsThunk } from 'store/maxiom/thunk'
 import { getUniversalsThunk } from 'store/posts/thunk'

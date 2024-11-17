@@ -1,3 +1,4 @@
 export const STATE_SLICE_NAMES = {
-  cars: 'cars',
+  profile: 'profile',
+  posts: 'posts',
 } as const

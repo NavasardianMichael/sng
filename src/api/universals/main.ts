@@ -1,7 +1,7 @@
 import { ENDPOINTS } from 'constants/api'
 import axiosInstance from 'api/axiosInstance'
 import { APIResponse } from 'types/api'
-import { handleApiError, paramsToQueryString } from 'helpers/api'
+import { handleAPIError, paramsToQueryString } from 'helpers/api'
 import { processGetUniversalsResponse } from './processors'
 import { GetUniversalsAPI, PinCmapToUniversalAPI, UnpinCmapIdFromUniversalAPI } from './types'
 
@@ -11,7 +11,7 @@ export const getUniversalsAPI: GetUniversalsAPI['api'] = async ({ fileName }) =>
     `/${ENDPOINTS.getUniversals}?${paramsToQueryString(params)}`
   )
 
-  handleApiError(data)
+  handleAPIError(data)
 
   const processedUniversals = processGetUniversalsResponse(data)
 
@@ -23,7 +23,7 @@ export const pinCmapIdToUniversalAPI: PinCmapToUniversalAPI['api'] = async () =>
     `/${ENDPOINTS.pinCmapIdToMaxiom}`
   )
 
-  handleApiError(data)
+  handleAPIError(data)
 }
 
 export const unpinCmapIdFromUniversalAPI: UnpinCmapIdFromUniversalAPI['api'] = async () => {
@@ -31,5 +31,5 @@ export const unpinCmapIdFromUniversalAPI: UnpinCmapIdFromUniversalAPI['api'] = a
     `/${ENDPOINTS.unpinCmapIdToMaxiom}`
   )
 
-  handleApiError(data)
+  handleAPIError(data)
 }
