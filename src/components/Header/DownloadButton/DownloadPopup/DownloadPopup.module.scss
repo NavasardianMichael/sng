@@ -1,0 +1,159 @@
+.container {
+  position: absolute;
+  top: calc(100% + 28px);
+  right: -29px;
+  width: 327px;
+  text-align: center;
+  background-color: #fff;
+  border: solid 1px #d7d7d7;
+  z-index: 100;
+
+  &:before, &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 100%;
+  }
+  &:before {
+    right: 16px;
+    border-bottom: 20px solid #c7c7c7;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: none;
+    z-index: 5;
+  }
+  &:after {
+    right: 17px;
+    border-bottom: 19px solid #fff;
+    border-left: 19px solid transparent;
+    border-right: 19px solid transparent;
+    border-top: none;
+    z-index: 10;
+  }
+}
+
+.title {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.08px;
+  padding: 17px 0;
+}
+
+.options {
+  border-top: 1px solid #d7d7d7;
+  padding: 31px 0 0 78px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+
+  &:first-child {
+    margin-bottom: 17px;
+  }
+}
+
+.checkbox {
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  border: 1px solid #d7d7d7;
+  padding: 3px;
+  margin-right: 10px;
+  cursor: pointer;
+
+  div {
+    height: 100%;
+  }
+
+  &Active {
+    border: solid 1px #003b5c;
+
+    div {
+      background-color: #003b5c;
+    }
+  }
+}
+
+.label {
+  font-size: 18px;
+  line-height: 28px;
+  cursor: pointer;
+}
+
+.btns {
+  display: flex;
+  padding: 25px 25px 20px;
+}
+
+.btn {
+  width: 100%;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 17px;
+  text-transform: uppercase;
+  letter-spacing: 1.08px;
+  transition: all 0.16s ease-in-out;
+  padding: 10px 0 8px;
+  cursor: pointer;
+}
+
+.cancelBtn {
+  @extend .btn;
+
+  border: 1px solid #d7d7d7;
+  border-bottom: 4px solid #d7d7d7;
+  color: #d7d7d7;
+
+  &:hover {
+    color: #fff;
+    background-color: #003b5c;
+    border: 1px solid #003b5c;
+    border-bottom: 4px solid #003b5c;
+  }
+}
+
+.downloadBtn {
+  @extend .btn;
+
+  border: 1px solid #003b5c;
+  border-bottom: 4px solid #003b5c;
+  color: #003b5c;
+  margin-left: 17px;
+
+  &:hover {
+    color: #fff;
+    background-color: #003b5c;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    right: 0;
+    top: calc(100% + 13px);
+    width: 280px;
+
+    &:before {
+      right: 0;
+      border-bottom: 8px solid #c7c7c7;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+    }
+    &:after {
+      right: 1px;
+      border-bottom: 7px solid #fff;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+    }
+  }
+
+  .options {
+    padding-left: 58px;
+  }
+
+  .btns {
+    padding: 25px 20px 20px;
+  }
+}

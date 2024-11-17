@@ -1,0 +1,175 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 320px;
+  background-color: #fff;
+  border-bottom: solid 1px #d7d7d7;
+  padding: var(--space-md) 90px;
+  z-index: 1000;
+}
+
+.logo {
+  width: 200px;
+  height: 23px;
+}
+
+.controls {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.accessibility {
+  font-size: 12px;
+  line-height: normal;
+  font-weight: 300;
+  letter-spacing: 0.02px;
+  color: #003b5c;
+  text-transform: uppercase;
+}
+
+.toggle {
+  position: relative;
+  width: 25px;
+  min-width: 25px;
+  height: 11px;
+  margin-left: 10px;
+  cursor: pointer;
+
+  &:before,
+  &:after {
+    position: absolute;
+    display: block;
+    content: '';
+    transition: all 0.2s ease-in-out;
+    left: 0;
+  }
+
+  &:before {
+    height: 7px;
+    width: 100%;
+    top: 2px;
+    border-radius: 50px;
+    background-color: rgb(199, 199, 199);
+    z-index: 2;
+  }
+
+  &:after {
+    width: 11px;
+    height: 11px;
+    top: 0;
+    border-radius: 50%;
+    background-color: rgb(125, 125, 125);
+    z-index: 4;
+  }
+
+  &Active {
+    &:before {
+      background-color: rgb(99, 153, 174);
+    }
+
+    &:after {
+      transform: translateX(14px);
+    }
+  }
+}
+
+.zoomInIcon,
+.zoomOutIcon,
+.resetIcon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.zoomInIcon,
+.zoomOutIcon {
+  path {
+    transition: all 0.2s ease-in-out;
+  }
+
+  &Inactive {
+    path {
+      fill: #aeaeae;
+      stroke: #aeaeae;
+    }
+  }
+}
+
+.resetIcon {
+  transition: all 0.2s ease-in-out;
+
+  &Inactive {
+    stroke: #aeaeae;
+  }
+}
+
+.zoomInIcon,
+.resetIcon {
+  margin-left: 50px;
+}
+
+.percentage {
+  width: 50px;
+  text-align: center;
+  font-size: 10px;
+  line-height: normal;
+  text-transform: uppercase;
+  transition: all 0.24s ease-in-out;
+
+  &Inactive {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    // padding: 0 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    height: 50px;
+    width: 100vw;
+    min-width: 300px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    height: 18px;
+    width: 150px;
+  }
+
+  .controls {
+    position: fixed;
+    width: 100vw;
+    min-width: 300px;
+    height: 40px;
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
+    border-top: solid 1px #d7d7d7;
+    padding: 0 20px;
+  }
+
+  .zoomInIcon {
+    margin-left: auto;
+  }
+
+  .resetIcon {
+    margin-left: 20px;
+  }
+
+  .percentage {
+    width: 60px;
+
+    &Inactive {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+:root {
+  /* colors */
+  --primary-color: #003d5c;
+  --secondary-color: #ffff;
+  --tertiary-color: #979797;
+  --quaternary-color: #287fa3;
+
+  /* sizing */
+  --space-xxs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+}

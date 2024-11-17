@@ -1,0 +1,170 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes box1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  28% {
+    transform: rotate(-180deg);
+  }
+  100% {
+    transform: rotate(-180deg);
+  }
+}
+
+@keyframes box2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(0deg);
+  }
+  61% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  66% {
+    transform: rotate(0deg);
+  }
+  94% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes item11 {
+  0% {
+    opacity: 1;
+  }
+  29% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes item21 {
+  0% {
+    opacity: 0;
+  }
+  28% {
+    opacity: 0;
+  }
+  29% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.loader {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: fadeIn 0.5s ease-in-out both;
+  z-index: 100;
+}
+
+.spinnerWrap {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+
+  &.Hidden {
+    opacity: 0;
+  }
+}
+
+.spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  animation: spinner 3s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+}
+
+.spinnerBox1,
+.spinnerBox2 {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 25%;
+}
+
+.spinnerBox1 {
+  left: 0;
+  animation: box1 3s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+}
+
+.spinnerBox2 {
+  right: 0;
+  animation: box2 3s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+}
+
+.spinnerItem11,
+.spinnerItem12,
+.spinnerItem21,
+.spinnerItem22 {
+  position: absolute;
+  top: 10%;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background-color: var(--quaternary-color);
+}
+
+.spinnerItem11,
+.spinnerItem21 {
+  left: -40%;
+}
+
+.spinnerItem12,
+.spinnerItem22 {
+  right: -40%;
+}
+
+.spinnerItem11 {
+  background-color: var(--quaternary-color);
+  animation: item11 3s linear infinite;
+}
+
+.spinnerItem21 {
+  background-color: var(--quaternary-color);
+  animation: item21 3s linear infinite;
+}

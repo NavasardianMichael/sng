@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/oidc-client/1.6.1/oidc-client.min.js"></script>
+    <script src="./oidc-config.js"></script>
+    <script>
+      new Oidc.UserManager(OIDC_CONFIG).signoutRedirect()
+        .catch(function(err) {
+          console.log(err);
+        });
+    </script>
+  </body>
+</html>
