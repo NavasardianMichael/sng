@@ -1,7 +1,7 @@
-import { STATE_SLICE_NAMES } from 'constants/store'
 import { createPostAPI, deletePostAPI, editPostAPI, getPostsAPI } from 'api/posts/main'
 import { CreatePostAPI, DeletePostAPI, EditPostAPI, GetPostsAPI } from 'api/posts/types'
-import { createAppAsyncThunk } from 'helpers/store'
+import { STATE_SLICE_NAMES } from 'helpers/constants/store'
+import { createAppAsyncThunk } from 'helpers/functions/store'
 import { addPost, deletePost, editPost, initPosts } from './slice'
 import { Post, PostsSlice } from './types'
 

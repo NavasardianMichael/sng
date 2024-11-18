@@ -1,6 +1,6 @@
 import { FC, RefAttributes } from 'react'
 import { NavLink, NavLinkProps } from 'react-router-dom'
-import { combineClassNames } from 'utils/classNames'
+import { combineClassNames } from 'helpers/functions/commons'
 import styles from './AppNavLink.module.css'
 
 type CustomProps = {

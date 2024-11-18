@@ -1,4 +1,4 @@
-import { Normalized } from 'types/commons'
+import { Normalized } from 'helpers/types/commons'
 
 export type PostsSlice = {
   list: Normalized<Post>

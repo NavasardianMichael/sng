@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { STATE_SLICE_NAMES } from '../constants/store'
+import { STATE_SLICE_NAMES } from 'helpers/constants/store'
 import miniEntitiesReducer from './miniEntities/slice'
 import postsReducer from './posts/slice'
 import profileReducer from './profile/slice'

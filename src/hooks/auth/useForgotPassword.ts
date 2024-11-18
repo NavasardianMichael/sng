@@ -1,18 +1,18 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { forgotPasswordThunk } from 'store/thunk'
-import { Profile } from 'store/types'
-import { PUBLIC_PAGES } from 'constants/pages'
-import { isRejectedAction } from 'utils/store'
-import { useAppDispatch } from '../useAppDispatch'
+import { forgotPasswordThunk } from 'store/profile/thunk'
+import { Profile } from 'store/profile/types'
+import { useAppDispatch } from 'hooks/useAppDispatch'
+import { PUBLIC_PAGES } from 'helpers/constants/pages'
+import { isRejectedAction } from 'helpers/functions/store'
 
 export const useForgotPassword = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   return useCallback(
-    async (values: Pick<Profile, 'email'>) => {
-      const res = await dispatch(forgotPasswordThunk(values.email))
+    async ({ email }: Pick<Profile, 'email'>) => {
+      const res = await dispatch(forgotPasswordThunk({ email }))
       if (isRejectedAction(res)) return
 
       navigate(PUBLIC_PAGES.emailVerification)

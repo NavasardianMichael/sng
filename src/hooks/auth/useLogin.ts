@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getProfileThunk, loginThunk } from 'store/thunk'
-import { LoginFormValues } from 'types/auth'
-import { PRIVATE_PAGES } from 'constants/pages'
-import { isRejectedAction } from 'utils/store'
+import { LoginAPI } from 'api/auth/types'
+import { getProfileThunk, loginThunk } from 'store/profile/thunk'
+import { PRIVATE_PAGES } from 'helpers/constants/pages'
+import { isRejectedAction } from 'helpers/functions/store'
 import { useAppDispatch } from '../useAppDispatch'
 import useLocalStorage from '../useLocalStorage'
 
@@ -13,13 +13,13 @@ export const useLogin = () => {
   const [, setIsLoggedIn] = useLocalStorage('isLoggedIn', false)
 
   return useCallback(
-    async (values: LoginFormValues) => {
+    async (values: LoginAPI['payload']) => {
       const loginAction = await dispatch(loginThunk(values))
       if (isRejectedAction(loginAction)) return
-      
+
       const getProfileAction = await dispatch(getProfileThunk())
       if (isRejectedAction(getProfileAction)) return
-      
+
       setIsLoggedIn(true)
       navigate(PRIVATE_PAGES.home)
     },

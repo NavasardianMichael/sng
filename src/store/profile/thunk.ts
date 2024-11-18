@@ -1,8 +1,7 @@
 import { AxiosError, isAxiosError } from 'axios'
-import { PROFILE_INITIAL_DATA } from 'constants/auth/commons'
-import { STATE_SLICE_NAMES } from 'constants/store'
 import {
   changePasswordAPI,
+  getProfileAPI,
   inviteUserAPI,
   loginAPI,
   logoutAPI,
@@ -13,6 +12,7 @@ import {
 } from 'api/auth/main'
 import {
   ChangePasswordAPI,
+  GetProfileAPI,
   InviteUserAPI,
   LoginAPI,
   LogoutAPI,
@@ -21,7 +21,9 @@ import {
   SendForgotPasswordInstructionsAPI,
   VerifyTokenAPI,
 } from 'api/auth/types'
-import { createAppAsyncThunk } from 'helpers/store'
+import { PROFILE_INITIAL_DATA } from 'helpers/constants/profile'
+import { STATE_SLICE_NAMES } from 'helpers/constants/store'
+import { createAppAsyncThunk } from 'helpers/functions/store'
 import { setIsLoggedIn, setProfileData } from './slice'
 import { Profile } from './types'
 
@@ -129,6 +131,21 @@ export const inviteUserThunk = createAppAsyncThunk<void, InviteUserAPI['payload'
   async (payload, { rejectWithValue }) => {
     try {
       await inviteUserAPI(payload)
+    } catch (e) {
+      const error = e as Error | AxiosError
+      const processedError = isAxiosError(error) ? error?.response?.data : error
+      return rejectWithValue(processedError)
+    }
+  }
+)
+
+export const getProfileThunk = createAppAsyncThunk<Profile, GetProfileAPI['payload']>(
+  `${STATE_SLICE_NAMES.profile}/getProfile`,
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      const profile = await getProfileAPI()
+      dispatch(setProfileData(profile))
+      return profile
     } catch (e) {
       const error = e as Error | AxiosError
       const processedError = isAxiosError(error) ? error?.response?.data : error

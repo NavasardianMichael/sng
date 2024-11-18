@@ -1,5 +1,5 @@
 import { Post, PostsSlice } from 'store/posts/types'
-import { Endpoint } from 'types/api'
+import { Endpoint } from 'helpers/types/api'
 
 type PostResponse = Post
 

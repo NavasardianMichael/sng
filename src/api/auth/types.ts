@@ -1,69 +1,76 @@
-import { Profile } from "store/profile/types"
-import { Endpoint } from "types/api"
+import { Profile } from 'store/profile/types'
+import { Endpoint } from 'helpers/types/api'
 
 export type LoginAPI = Endpoint<{
-    payload: {
-        email: Profile['email']
-        password: string
-    }
-    response: Profile
-    processed: Profile
+  payload: {
+    email: Profile['email']
+    password: string
+  }
+  response: Profile
+  processed: Profile
 }>
 
 export type RegisterAPI = Endpoint<{
-    payload: {
-        email: Profile['email']
-        password: string
-    }
-    response: Profile
-    processed: Profile
+  payload: Pick<Profile, 'email' | 'phone' | 'role'> & {
+    password: string
+    confirmedPassword: string
+    token: string
+  }
+  response: Profile
+  processed: Profile
 }>
 
 export type LogoutAPI = Endpoint<{
-    payload: void
-    response: void
-    processed: void
+  payload: void
+  response: void
+  processed: void
 }>
 
 export type SendForgotPasswordInstructionsAPI = Endpoint<{
-    payload: Pick<Profile, 'email'>
-    response: void
-    processed: void
+  payload: Pick<Profile, 'email'>
+  response: void
+  processed: void
 }>
 
 export type ChangePasswordAPI = Endpoint<{
-    payload: {
-        currentPassword: string
-        newPassword: string
-        confirmPassword: string
-    }
-    response: void
-    processed: void
+  payload: {
+    currentPassword: string
+    newPassword: string
+    confirmPassword: string
+  }
+  response: void
+  processed: void
 }>
 
 export type InviteUserAPI = Endpoint<{
-    payload: Pick<Profile, 'email'>
-    response: void
-    processed: void
+  payload: Pick<Profile, 'email'>
+  response: void
+  processed: void
 }>
 
 export type VerifyTokenAPI = Endpoint<{
-    payload: {
-        email: Profile['email']
-        token: string
-        type: string
-    }
-    response: void
-    processed: void
+  payload: {
+    email: Profile['email']
+    token: string
+    type: string
+  }
+  response: void
+  processed: void
 }>
 
 export type ResetPasswordAPI = Endpoint<{
-    payload: {
-        token: string
-        email: Profile['email']
-        newPassword: string
-        confirmPassword: string
-    }
-    response: void
-    processed: void
+  payload: {
+    token: string
+    email: Profile['email']
+    newPassword: string
+    confirmPassword: string
+  }
+  response: void
+  processed: void
+}>
+
+export type GetProfileAPI = Endpoint<{
+  payload: void
+  response: Profile
+  processed: Profile
 }>

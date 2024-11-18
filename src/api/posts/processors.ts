@@ -2,29 +2,28 @@ import { Post, PostsSlice } from 'store/posts/types'
 import { CreatePostAPI, DeletePostAPI, EditPostAPI, GetPostsAPI } from './types'
 
 export const processGetPostsResponse: GetPostsAPI['processor'] = (response) => {
-  const normalizedPosts = response.result
-    .reduce(
-      (acc, post) => {
-        const processedPost = processPostResponse(post)
-        acc.byId[processedPost.id] = processedPost
-        acc.allIds.push(processedPost.id)
-        return acc
-      },
-      {
-        allIds: [],
-        byId: {}
-      } as PostsSlice['list']
-    )
+  const normalizedPosts = response.value.reduce(
+    (acc, post) => {
+      const processedPost = processPostResponse(post)
+      acc.byId[processedPost.id] = processedPost
+      acc.allIds.push(processedPost.id)
+      return acc
+    },
+    {
+      allIds: [],
+      byId: {},
+    } as PostsSlice['list']
+  )
 
   return normalizedPosts
 }
 
 export const processCreatePostResponse: CreatePostAPI['processor'] = (response) => {
-  return processPostResponse(response.result)
+  return processPostResponse(response.value)
 }
 
 export const processEditPostResponse: EditPostAPI['processor'] = (response) => {
-  return processPostResponse(response.result)
+  return processPostResponse(response.value)
 }
 
 export const processDeletePostResponse: DeletePostAPI['processor'] = () => {

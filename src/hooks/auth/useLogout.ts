@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { logoutThunk } from 'store/thunk'
-import { PRIVATE_PAGES, PUBLIC_PAGES } from 'constants/pages'
-import { isRejectedAction } from 'utils/store'
+import { logoutThunk } from 'store/profile/thunk'
+import { PRIVATE_PAGES, PUBLIC_PAGES } from 'helpers/constants/pages'
+import { isRejectedAction } from 'helpers/functions/store'
 import { useAppDispatch } from '../useAppDispatch'
 import useLocalStorage from '../useLocalStorage'
 
@@ -16,8 +16,10 @@ export const useLogout = () => {
     if (isRejectedAction(res)) return
 
     removeIsLoggedInFlag()
-    navigate(PUBLIC_PAGES.login, { state: {
-      origin: PRIVATE_PAGES.home
-    } })
+    navigate(PUBLIC_PAGES.login, {
+      state: {
+        origin: PRIVATE_PAGES.home,
+      },
+    })
   }, [dispatch, navigate, removeIsLoggedInFlag])
 }

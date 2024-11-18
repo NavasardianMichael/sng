@@ -1,7 +1,7 @@
 import { PayloadAction, SerializedError, createSlice } from '@reduxjs/toolkit'
-import { PROFILE_INITIAL_DATA } from 'constants/auth/commons'
+import { PROFILE_INITIAL_DATA } from 'helpers/constants/profile'
+import { isFulfilledAction, isPendingAction, isRejectedAction } from 'helpers/functions/store'
 import { ProfileActionPayloads, ProfileSlice } from './types'
-import { isFulfilledAction, isPendingAction, isRejectedAction } from 'helpers/store'
 
 const initialState: ProfileSlice = {
   data: PROFILE_INITIAL_DATA,

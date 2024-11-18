@@ -22,8 +22,6 @@ export type PostsActionPayloads = {
   initMiniEntities: MiniEntitiesSlice
 }
 
-
-
 // const b = {
 //   value: [
 //     {

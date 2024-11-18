@@ -1,11 +1,12 @@
 import axiosInstance from 'api/axiosInstance'
-import { APIResponse } from 'types/api'
-import { handleAPIError } from 'helpers/api'
+import { APIResponse } from 'helpers/types/api'
+import { handleAPIError } from 'helpers/functions/api'
+import { ENDPOINTS } from './endpoints'
 import {
   processChangePasswordResponse,
   processIniviteUserResponse,
   processLoginResponse,
-  processLogoutResponse,
+  processProfileResponse,
   processRegisterResponse,
   processResetPasswordResponse,
   processSendForgotPasswordInstructionsResponse,
@@ -13,6 +14,7 @@ import {
 } from './processors'
 import {
   ChangePasswordAPI,
+  GetProfileAPI,
   InviteUserAPI,
   LoginAPI,
   LogoutAPI,
@@ -21,13 +23,9 @@ import {
   SendForgotPasswordInstructionsAPI,
   VerifyTokenAPI,
 } from './types'
-import { ENDPOINTS } from './endpoints'
 
 export const loginAPI: LoginAPI['api'] = async (params) => {
-  const { data } = await axiosInstance.post<APIResponse<LoginAPI['response']>>(
-    ENDPOINTS.login,
-    JSON.stringify(params)
-  )
+  const { data } = await axiosInstance.post<APIResponse<LoginAPI['response']>>(ENDPOINTS.login, JSON.stringify(params))
   handleAPIError(data)
   const processedResponse = processLoginResponse(data)
   return processedResponse
@@ -43,16 +41,9 @@ export const registerAPI: RegisterAPI['api'] = async (params) => {
   return processedResponse
 }
 
-export const logoutAPI: LogoutAPI['api'] = async (params) => {
-  console.log(params);
-
-  const { data } = await axiosInstance.post<APIResponse<LogoutAPI['response']>>(
-    ENDPOINTS.logout,
-    JSON.stringify(params)
-  )
+export const logoutAPI: LogoutAPI['api'] = async () => {
+  const { data } = await axiosInstance.post<APIResponse<LogoutAPI['response']>>(ENDPOINTS.logout)
   handleAPIError(data)
-  const processedResponse = processLogoutResponse(data)
-  return processedResponse
 }
 
 export const sendForgotPasswordInstructionsAPI: SendForgotPasswordInstructionsAPI['api'] = async (params) => {
@@ -102,5 +93,12 @@ export const resetPasswordAPI: ResetPasswordAPI['api'] = async (params) => {
   )
   handleAPIError(data)
   const processedResponse = processResetPasswordResponse(data)
+  return processedResponse
+}
+
+export const getProfileAPI: GetProfileAPI['api'] = async () => {
+  const { data } = await axiosInstance.get<APIResponse<GetProfileAPI['response']>>(ENDPOINTS.getProfile)
+  handleAPIError(data)
+  const processedResponse = processProfileResponse(data)
   return processedResponse
 }

@@ -1,14 +1,14 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { STATE_SLICE_NAMES } from 'constants/store'
-import { PostsSlice, PostsActionPayloads } from './types'
+import { STATE_SLICE_NAMES } from 'helpers/constants/store'
+import { PostsActionPayloads, PostsSlice } from './types'
 
 const initialState: PostsSlice = {
   list: {
     allIds: [],
-    byId: {}
+    byId: {},
   },
   currentPostId: '',
-  favoritePostIds: []
+  favoritePostIds: [],
 }
 
 export const { reducer: postsReducer, actions } = createSlice({
@@ -27,7 +27,7 @@ export const { reducer: postsReducer, actions } = createSlice({
       state.list.byId[payload.id] = payload
     },
     deletePost: (state, { payload }: PayloadAction<PostsActionPayloads['deletePost']>) => {
-      state.list.allIds = state.list.allIds.filter(postId => postId !== payload.id)
+      state.list.allIds = state.list.allIds.filter((postId) => postId !== payload.id)
       delete state.list.byId[payload.id]
     },
   },

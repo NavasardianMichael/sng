@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { inviteThunk } from 'store/thunk'
-import { Profile } from 'store/types'
-import { PRIVATE_PAGES } from 'constants/pages'
-import { isRejectedAction } from 'utils/store'
+import { inviteUserThunk } from 'store/profile/thunk'
+import { Profile } from 'store/profile/types'
+import { PRIVATE_PAGES } from 'helpers/constants/pages'
+import { isRejectedAction } from 'helpers/functions/store'
 import { useAppDispatch } from '../useAppDispatch'
 
 export const useInvite = () => {
@@ -12,7 +12,7 @@ export const useInvite = () => {
 
   return useCallback(
     async (values: Pick<Profile, 'email' | 'role'>) => {
-      const res = await dispatch(inviteThunk(values))
+      const res = await dispatch(inviteUserThunk(values))
 
       if (isRejectedAction(res)) return
 

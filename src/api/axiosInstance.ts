@@ -1,12 +1,10 @@
 import axios, { AxiosError } from 'axios'
-import { PUBLIC_PAGES } from 'constants/pages'
-
+import { PUBLIC_PAGES } from 'helpers/constants/pages'
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_API_URL,
   withCredentials: true,
-  headers: {
-  },
+  headers: {},
 })
 
 const onRejected = (error: AxiosError): Promise<AxiosError> => {

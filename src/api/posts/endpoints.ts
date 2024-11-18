@@ -1,6 +1,6 @@
 export const ENDPOINTS = {
-    getPosts: 'GetPosts',
-    createPost: 'CreatePost',
-    editPost: 'EditPost',
-    deletePost: 'DeletePost',
+  getPosts: 'GetPosts',
+  createPost: 'CreatePost',
+  editPost: 'EditPost',
+  deletePost: 'DeletePost',
 } as const

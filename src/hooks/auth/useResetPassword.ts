@@ -1,11 +1,11 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { resetPasswordThunk } from 'store/thunk'
+import { resetPasswordThunk } from 'store/profile/thunk'
+import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useQueryParams } from 'hooks/useQueryParams'
-import { RESET_PASSWORD_FORM_INITIAL_VALUES } from 'constants/auth/resetPassword'
-import { PUBLIC_PAGES } from 'constants/pages'
-import { isRejectedAction } from 'utils/store'
-import { useAppDispatch } from '../useAppDispatch'
+import { RESET_PASSWORD_FORM_INITIAL_VALUES } from 'helpers/constants/auth/resetPassword'
+import { PUBLIC_PAGES } from 'helpers/constants/pages'
+import { isRejectedAction } from 'helpers/functions/store'
 
 export const useResetPassword = () => {
   const navigate = useNavigate()
@@ -17,8 +17,6 @@ export const useResetPassword = () => {
 
   return useCallback(
     async (values: typeof RESET_PASSWORD_FORM_INITIAL_VALUES) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
       const res = await dispatch(resetPasswordThunk({ email, token, ...values }))
       if (isRejectedAction(res)) return
 

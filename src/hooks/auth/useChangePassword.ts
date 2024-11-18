@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { changePasswordThunk } from 'store/thunk'
-import { CHANGE_PASSWORD_FORM_INITIAL_VALUES } from 'constants/auth/changePassword'
-import { PUBLIC_PAGES } from 'constants/pages'
-import { isRejectedAction } from 'utils/store'
-import { useAppDispatch } from '../useAppDispatch'
+import { changePasswordThunk } from 'store/profile/thunk'
+import { useAppDispatch } from 'hooks/useAppDispatch'
+import { CHANGE_PASSWORD_FORM_INITIAL_VALUES } from 'helpers/constants/auth/changePassword'
+import { PUBLIC_PAGES } from 'helpers/constants/pages'
+import { isRejectedAction } from 'helpers/functions/store'
 
 export const useChangePassword = () => {
   const navigate = useNavigate()
@@ -12,8 +12,6 @@ export const useChangePassword = () => {
 
   return useCallback(
     async (values: typeof CHANGE_PASSWORD_FORM_INITIAL_VALUES) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
       const res = await dispatch(changePasswordThunk(values))
       if (isRejectedAction(res)) return
 

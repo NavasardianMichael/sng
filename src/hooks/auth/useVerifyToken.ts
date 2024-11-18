@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
-import { verifyTokenThunk } from 'store/thunk'
+import { verifyTokenThunk } from 'store/profile/thunk'
+import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useQueryParams } from 'hooks/useQueryParams'
-import { useAppDispatch } from '../useAppDispatch'
 
 export const useVerifyToken = () => {
   const dispatch = useAppDispatch()

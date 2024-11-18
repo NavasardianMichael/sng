@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { STATE_SLICE_NAMES } from 'constants/store'
-import { PostsActionPayloads, MiniEntitiesSlice } from './types'
+import { STATE_SLICE_NAMES } from 'helpers/constants/store'
+import { MiniEntitiesSlice, PostsActionPayloads } from './types'
 
 const initialState: MiniEntitiesSlice = {
   availabilityStates: [],

@@ -1,4 +1,4 @@
-import { ROLES } from "constants/auth/profile"
+import { ROLES } from 'helpers/constants/auth/profile'
 
 export type ProfileSlice = {
   data: Profile
@@ -8,6 +8,7 @@ export type ProfileSlice = {
 }
 
 export type Profile = {
+  phone: string
   email: string
   role?: Role
 }

@@ -1,12 +1,12 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { registerThunk } from 'store/thunk'
-import { Role } from 'store/types'
+import { registerThunk } from 'store/profile/thunk'
+import { Role } from 'store/profile/types'
+import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useQueryParams } from 'hooks/useQueryParams'
-import { REGISTRATION_FORM_INITIAL_VALUES } from 'constants/auth/registration'
-import { PUBLIC_PAGES } from 'constants/pages'
-import { isRejectedAction } from 'utils/store'
-import { useAppDispatch } from '../useAppDispatch'
+import { REGISTRATION_FORM_INITIAL_VALUES } from 'helpers/constants/auth/registration'
+import { PUBLIC_PAGES } from 'helpers/constants/pages'
+import { isRejectedAction } from 'helpers/functions/store'
 
 export const useRegister = () => {
   const navigate = useNavigate()
@@ -19,14 +19,14 @@ export const useRegister = () => {
 
   return useCallback(
     async (values: typeof REGISTRATION_FORM_INITIAL_VALUES) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { newPassword, confirmPassword } = values
+      const { password, confirmedPassword } = values
 
       const res = await dispatch(
         registerThunk({
-          newPassword,
-          confirmPassword,
+          password,
+          confirmedPassword,
           email,
+          phone: '',
           token,
           role,
         })
@@ -36,6 +36,6 @@ export const useRegister = () => {
 
       navigate(PUBLIC_PAGES.confirmation)
     },
-    [dispatch, navigate, email, token, role]
+    [dispatch, navigate, email, token]
   )
 }
