@@ -1,16 +1,14 @@
-import { Typography } from '@mui/material'
+import { Typography } from 'antd'
 import { ForgotPasswordForm } from './Form'
 
 const ForgotPassword = () => {
   return (
     <>
-      <Typography align="center" variant="h4" gutterBottom>
-        Forgot your password?
-      </Typography>
-      <Typography align="center" gutterBottom>
+      <Typography.Title level={4}>Forgot your password?</Typography.Title>
+      <Typography.Paragraph>
         Please enter the email address associated with your account. <br /> We'll send you a link to reset your
         password.
-      </Typography>
+      </Typography.Paragraph>
       <ForgotPasswordForm />
     </>
   )

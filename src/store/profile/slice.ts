@@ -10,7 +10,7 @@ const initialState: ProfileSlice = {
   errorMessage: '',
 }
 
-export const profileSlice = createSlice({
+export const { reducer: profileReducer, actions } = createSlice({
   name: 'profile',
   initialState,
   reducers: {
@@ -43,6 +43,6 @@ export const profileSlice = createSlice({
   },
 })
 
-export const { setProfileData, setIsLoggedIn, resetErrorMessage } = profileSlice.actions
+export const { setProfileData, setIsLoggedIn, resetErrorMessage } = actions
 
-export default profileSlice.reducer
+export default profileReducer

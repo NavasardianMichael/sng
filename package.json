@@ -1,5 +1,5 @@
 {
-  "name": "cascades-new",
+  "name": "sng-cars",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,8 +13,10 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
     "@xyflow/react": "^12.3.2",
+    "antd": "^5.22.1",
     "axios": "^1.7.7",
     "classnames": "^2.5.1",
+    "formik": "^2.4.6",
     "jspdf": "^2.5.2",
     "oidc-client": "^1.11.5",
     "react": "^18.3.1",

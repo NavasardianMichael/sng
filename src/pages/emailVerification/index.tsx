@@ -1,16 +1,14 @@
-import { Box, Typography } from '@mui/material'
+import { Typography } from 'antd'
 
 const EmailVerification = () => {
   return (
-    <Box textAlign="center">
-      <Typography align="center" variant="h4" gutterBottom>
-        Follow the Instructions in the Email.
-      </Typography>
-      <Typography>
+    <div style={{ textAlign: 'center' }}>
+      <Typography.Title level={4}>Follow the Instructions in the Email.</Typography.Title>
+      <Typography.Paragraph>
         We've sent a confirmation email to the address you provided. Please check your inbox to confirm your email
         address and complete the process.
-      </Typography>
-    </Box>
+      </Typography.Paragraph>
+    </div>
   )
 }
 

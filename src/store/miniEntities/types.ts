@@ -1,64 +1,28 @@
-import { Normalized } from 'types/commons'
-
-export type PostsSlice = {
-  list: Normalized<Post>
-  currentPostId: Post['id']
-  favoritePostIds: Post['id'][]
+export type MiniEntitiesSlice = {
+  availabilityStates: MiniEntity[]
+  categories: MiniEntity[]
+  bodyTypes: MiniEntity[]
+  engines: MiniEntity[]
+  transmissions: MiniEntity[]
+  documentTypes: MiniEntity[]
+  ownerNumbers: MiniEntity[]
+  priceUnits: PriceUnit[]
 }
 
-export type Post = {
+export type MiniEntity = {
   id: string
-  authorShortInfo: string
-  createdDateUtc: string
-  modifiedDateUtc: string
-  status: string
-  description: string
-  options: string[]
-  images: {
-    primary: string
-    secondaries: string[]
-  }
-  carDetails: {
-    price: {
-      unitId: string
-      car: number
-      secondary: number
-    }
-    availability: string
-    brand: string
-    model: string
-    year: number
-    vin: string
-    modification: string
-    color: string
-    mileage: number
-    purchaseDate: string
-    damaged: boolean
-    runAndGo: boolean
-    underWarranty: boolean
-    clearance: boolean
-    ownerNumber: number
-    category: string
-    engine: string
-    transmission: string
-    bodyType: string
-    drive: string
-    documentType: string
-  }
-  contactInfo: {
-    contactName: string
-    contactEmail: string
-    contactPhoneNumber: string
-    lookupAddress: string
-  }
+  text: string
+}
+
+type PriceUnit = MiniEntity & {
+  symbol: string
 }
 
 export type PostsActionPayloads = {
-  initPosts: PostsSlice['list']
-  addPost: Post
-  editPost: Post
-  deletePost: Pick<Post, 'id'>
+  initMiniEntities: MiniEntitiesSlice
 }
+
+
 
 // const b = {
 //   value: [

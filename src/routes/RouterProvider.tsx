@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { PRIVATE_PAGES, PUBLIC_PAGES } from 'constants/pages'
 import { usePrivateRouteLoader } from 'hooks/usePrivateRouteLoader'
-import Loader from 'components/Loader/Loader'
+import Loader from 'components/_shared/Loader/Loader'
 import {
   ChangePasswordPage,
   ConfirmationPage,

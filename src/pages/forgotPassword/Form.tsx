@@ -1,19 +1,20 @@
 import { FC } from 'react'
-import { useFormik } from 'formik'
-import { Box, Button, TextField } from '@mui/material'
-import { selectIsLoggedIn, selectIsPending } from 'store/selectors'
-import { useForgotPassword } from 'hooks/auth/useForgotPassword'
-import { useAppSelector } from 'hooks/useAppSelector'
+import { Button, Flex, Input } from 'antd'
 import {
   FORGOT_PASSWORD_FORM_INITIAL_VALUES,
   FORGOT_PASSWORD_FORM_VALIDATION_SCHEMA,
 } from 'constants/auth/forgotPassword'
 import { PUBLIC_PAGES } from 'constants/pages'
-import AppNavLink from 'components/ui/appNavLink'
+import { useFormik } from 'formik'
+import { selectIsLoggedIn, selectIsProfileSlicePending } from 'store/profile/selectors'
+import { useForgotPassword } from 'hooks/auth/useForgotPassword'
+import { useAppSelector } from 'hooks/useAppSelector'
+import AppNavLink from 'components/_shared/AppNavLink/AppNavLink'
+import FormItemError from 'components/_shared/FormItemError/FormItemError'
 
 export const ForgotPasswordForm: FC = () => {
-  const isPending = useAppSelector(selectIsPending)
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
+  const isPending = useAppSelector(selectIsProfileSlicePending)
   const forgotPassword = useForgotPassword()
 
   const formik = useFormik({
@@ -24,25 +25,25 @@ export const ForgotPasswordForm: FC = () => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Box display="flex" flexDirection="column" gap={2}>
-        <TextField
+      <Flex vertical gap={2}>
+        <Input
           name="email"
           placeholder="Enter Email"
           disabled={isPending}
           value={formik.values.email}
           onChange={formik.handleChange}
-          error={!!formik.errors.email}
-          helperText={formik.errors.email}
+          status={formik.errors.email ? 'error' : ''}
         />
-        <Box display="flex">
+        <FormItemError key="email" message={formik.errors.email} />
+        <Flex>
           <AppNavLink primary to={PUBLIC_PAGES.login} disabled={isPending}>
             {isLoggedIn ? 'Profile' : 'Login'}
           </AppNavLink>
-        </Box>
-        <Button type="submit" variant="contained" disabled={isPending}>
+        </Flex>
+        <Button htmlType="submit" disabled={isPending}>
           Send Email
         </Button>
-      </Box>
+      </Flex>
     </form>
   )
 }

@@ -1,12 +1,10 @@
-import { Typography } from '@mui/material'
+import { Typography } from 'antd'
 import { InvitationForm } from './Form'
 
 const Invitation = () => {
   return (
     <>
-      <Typography align="center" variant="h4" gutterBottom>
-        Invite User
-      </Typography>
+      <Typography.Title level={4}>Invite User</Typography.Title>
       <InvitationForm />
     </>
   )

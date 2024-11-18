@@ -1,6 +1,6 @@
-import { Typography } from '@mui/material'
+import { Typography } from 'antd'
+import { ROLES } from 'constants/auth/profile'
 import { useQueryParams } from 'hooks/useQueryParams'
-import { ROLES } from 'constants/profile'
 import { RegistrationForm } from './Form'
 
 const Registration = () => {
@@ -9,14 +9,12 @@ const Registration = () => {
 
   return (
     <>
-      <Typography align="center" variant="h4" gutterBottom>
-        Welcome to Registration
-      </Typography>
-      <Typography paragraph textAlign="center">
+      <Typography.Title level={4}>Welcome to Registration</Typography.Title>
+      <Typography.Paragraph>
         Your email <strong>{queryParams.email}</strong> <br /> with a role{' '}
         <strong>{roleNames.find((key) => ROLES[key] === +queryParams.role)}</strong> has been successfully invited to
         register.
-      </Typography>
+      </Typography.Paragraph>
       <RegistrationForm />
     </>
   )

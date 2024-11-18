@@ -1,19 +1,20 @@
 import { FC } from 'react'
-import { useFormik } from 'formik'
-import { Box, Button, TextField } from '@mui/material'
-import { selectIsLoggedIn, selectIsPending } from 'store/selectors'
-import { useResetPassword } from 'hooks/auth/useResetPassword'
-import { useAppSelector } from 'hooks/useAppSelector'
+import { Button, Flex, Input } from 'antd'
 import {
   RESET_PASSWORD_FORM_INITIAL_VALUES,
   RESET_PASSWORD_FORM_TEMPLATE,
   RESET_PASSWORD_FORM_VALIDATION_SCHEMA,
 } from 'constants/auth/resetPassword'
 import { PRIVATE_PAGES } from 'constants/pages'
-import AppNavLink from 'components/ui/appNavLink'
+import { useFormik } from 'formik'
+import { selectIsLoggedIn, selectIsProfileSlicePending } from 'store/profile/selectors'
+import { useResetPassword } from 'hooks/auth/useResetPassword'
+import { useAppSelector } from 'hooks/useAppSelector'
+import AppNavLink from 'components/_shared/AppNavLink/AppNavLink'
+import FormItemError from 'components/_shared/FormItemError/FormItemError'
 
 export const ResetPasswordForm: FC = () => {
-  const isPending = useAppSelector(selectIsPending)
+  const isPending = useAppSelector(selectIsProfileSlicePending)
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const resetPassword = useResetPassword()
 
@@ -25,32 +26,34 @@ export const ResetPasswordForm: FC = () => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Box display="flex" flexDirection="column" gap={2}>
+      <Flex vertical gap={2}>
         {RESET_PASSWORD_FORM_TEMPLATE.map((field) => {
           const { name, placeholder } = field
           return (
-            <TextField
-              key={name}
-              type="password"
-              name={name}
-              placeholder={placeholder}
-              disabled={isPending}
-              value={formik.values[name]}
-              onChange={formik.handleChange}
-              error={!!formik.errors[name]}
-              helperText={formik.errors[name]}
-            />
+            <div>
+              <Input
+                key={name}
+                type="password"
+                name={name}
+                placeholder={placeholder}
+                disabled={isPending}
+                value={formik.values[name]}
+                onChange={formik.handleChange}
+                status={formik.errors[name] ? 'error' : ''}
+              />
+              <FormItemError message={formik.errors[name]} />
+            </div>
           )
         })}
-        <Box display="flex" justifyContent="space-between">
-          <AppNavLink primary to={PRIVATE_PAGES.home} disabled={isPending}>
+        <Flex justify="space-between">
+          <AppNavLink to={PRIVATE_PAGES.home} disabled={isPending}>
             {isLoggedIn ? 'Profile' : 'Login'}
           </AppNavLink>
-        </Box>
-        <Button type="submit" variant="contained" disabled={isPending}>
+        </Flex>
+        <Button htmlType="submit" disabled={isPending}>
           Confirm
         </Button>
-      </Box>
+      </Flex>
     </form>
   )
 }

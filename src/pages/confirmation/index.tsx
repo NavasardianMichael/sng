@@ -1,27 +1,25 @@
-import { Box, Typography } from '@mui/material'
-import { selectIsLoggedIn, selectIsPending } from 'store/selectors'
-import { useAppSelector } from 'hooks/useAppSelector'
+import { Typography } from 'antd'
 import { PRIVATE_PAGES } from 'constants/pages'
-import AppNavLink from 'components/ui/appNavLink'
+import { selectIsLoggedIn, selectIsProfileSlicePending } from 'store/profile/selectors'
+import { useAppSelector } from 'hooks/useAppSelector'
+import AppNavLink from 'components/_shared/AppNavLink/AppNavLink'
 
 const Confirmation = () => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
-  const isPending = useAppSelector(selectIsPending)
+  const isPending = useAppSelector(selectIsProfileSlicePending)
 
   return (
-    <Box textAlign="center">
-      <Typography align="center" variant="h4" gutterBottom>
-        Your action is succeed!
-      </Typography>
-      <Typography>
+    <div style={{ textAlign: 'center' }}>
+      <Typography.Title level={4}>Your action is succeed!</Typography.Title>
+      <Typography.Paragraph>
         Back to{' '}
         {
-          <AppNavLink primary to={PRIVATE_PAGES.home} disabled={isPending}>
+          <AppNavLink to={PRIVATE_PAGES.home} disabled={isPending}>
             {isLoggedIn ? 'Profile' : 'Login'}
           </AppNavLink>
         }
-      </Typography>
-    </Box>
+      </Typography.Paragraph>
+    </div>
   )
 }
 

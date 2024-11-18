@@ -5,7 +5,7 @@ import { useAppSelector } from 'hooks/useAppSelector'
 import { checkIsReadOnlyMode } from 'helpers/app'
 import { Content } from 'components/Content/Content'
 import Header from 'components/Header/Header'
-import Loader from 'components/Loader/Loader'
+import Loader from 'components/ui/Loader/Loader'
 import styles from './Main.module.scss'
 
 const Main: FC = () => {

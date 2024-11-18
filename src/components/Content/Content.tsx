@@ -2,7 +2,7 @@ import { FC, Suspense } from 'react'
 import { VIEW_TEMPLATE } from 'constants/app'
 import { selectAppOptions } from 'store/app/selectors'
 import { useAppSelector } from 'hooks/useAppSelector'
-import Loader from 'components/Loader/Loader'
+import Loader from 'components/ui/Loader/Loader'
 import styles from './Content.module.scss'
 
 export const Content: FC = () => {

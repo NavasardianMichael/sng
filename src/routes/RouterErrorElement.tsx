@@ -1,9 +1,10 @@
-import { FC, useMemo } from 'react'
+import { FC, useEffect, useMemo } from 'react'
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom'
-import { Alert, AlertTitle, Typography } from '@mui/material'
+import { message } from 'antd'
 
 const RouterErrorElement: FC = () => {
   const error: ReturnType<typeof useRouteError> = useRouteError()
+  const [messageApi, contextHolder] = message.useMessage()
 
   const errorMessage = useMemo(() => {
     if (isRouteErrorResponse(error)) return `${error.status} ${error.statusText}`
@@ -12,12 +13,15 @@ const RouterErrorElement: FC = () => {
     return 'Unknown error'
   }, [error])
 
-  return (
-    <Alert severity="error">
-      <AlertTitle>Error</AlertTitle>
-      <Typography>{errorMessage}</Typography>
-    </Alert>
-  )
+  useEffect(() => {
+    if (!errorMessage) return
+    messageApi.open({
+      type: 'error',
+      content: errorMessage,
+    })
+  }, [errorMessage, messageApi])
+
+  return <>{contextHolder}</>
 }
 
 export default RouterErrorElement

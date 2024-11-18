@@ -1,16 +1,17 @@
 import { FC } from 'react'
+import { Button, Flex, Input, Select } from 'antd'
+import { INVITATION_FORM_INITIAL_VALUES, INVITATION_FORM_VALIDATION_SCHEMA } from 'constants/auth/invitation'
+import { ROLES } from 'constants/auth/profile'
+import { PRIVATE_PAGES } from 'constants/pages'
 import { useFormik } from 'formik'
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
-import { selectIsPending } from 'store/selectors'
+import { selectIsProfileSlicePending } from 'store/profile/selectors'
 import { useInvite } from 'hooks/auth/useInvite'
 import { useAppSelector } from 'hooks/useAppSelector'
-import { INVITATION_FORM_INITIAL_VALUES, INVITATION_FORM_VALIDATION_SCHEMA } from 'constants/auth/invitation'
-import { PRIVATE_PAGES } from 'constants/pages'
-import { ROLES } from 'constants/profile'
-import AppNavLink from 'components/ui/appNavLink'
+import AppNavLink from 'components/_shared/AppNavLink/AppNavLink'
+import FormItemError from 'components/_shared/FormItemError/FormItemError'
 
 export const InvitationForm: FC = () => {
-  const isPending = useAppSelector(selectIsPending)
+  const isPending = useAppSelector(selectIsProfileSlicePending)
   const invite = useInvite()
 
   const formik = useFormik({
@@ -21,44 +22,30 @@ export const InvitationForm: FC = () => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Box display="flex" flexDirection="column" gap={2}>
-        <TextField
+      <Flex vertical gap={2}>
+        <Input
           name="email"
           placeholder="Enter Email"
           disabled={isPending}
           value={formik.values.email}
           onChange={formik.handleChange}
-          error={!!formik.errors.email}
-          helperText={formik.errors.email}
+          status={formik.errors.email ? 'error' : ''}
         />
-        <FormControl fullWidth>
-          <InputLabel id="role-select">Role</InputLabel>
-          <Select
-            labelId="role-select"
-            name="role"
-            value={formik.values.role}
-            label="Role"
-            onChange={formik.handleChange}
-          >
-            {(Object.keys(ROLES) as (keyof typeof ROLES)[]).map((role) => {
-              const value = ROLES[role]
-              return (
-                <MenuItem key={role} value={value}>
-                  {role}
-                </MenuItem>
-              )
-            })}
-          </Select>
-        </FormControl>
-        <Box>
+        <FormItemError key="email" message={formik.errors.email} />
+        <Select
+          value={formik.values.role}
+          onChange={formik.handleChange}
+          options={Object.values(ROLES).map((role) => ({ value: role, label: role }))}
+        />
+        <div>
           <AppNavLink primary to={PRIVATE_PAGES.home}>
             Back to Profile
           </AppNavLink>
-        </Box>
-        <Button type="submit" variant="contained" disabled={isPending}>
+        </div>
+        <Button htmlType="submit" disabled={isPending}>
           Invite
         </Button>
-      </Box>
+      </Flex>
     </form>
   )
 }

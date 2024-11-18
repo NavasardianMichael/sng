@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Outlet, useNavigation } from 'react-router-dom'
 import FloatingError from 'components/FloatingError'
-import Loader from 'components/Loader/Loader'
+import Loader from 'components/ui/Loader/Loader'
 
 const RoutesContainer: FC = () => {
   const navigation = useNavigation()

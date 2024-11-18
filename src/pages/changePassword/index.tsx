@@ -1,12 +1,10 @@
-import { Typography } from '@mui/material'
+import { Typography } from 'antd'
 import { ChangePasswordForm } from './Form'
 
 const ChangePassword = () => {
   return (
     <>
-      <Typography align="center" variant="h4" gutterBottom>
-        Change Password
-      </Typography>
+      <Typography.Title level={4}>Change Password</Typography.Title>
       <ChangePasswordForm />
     </>
   )
